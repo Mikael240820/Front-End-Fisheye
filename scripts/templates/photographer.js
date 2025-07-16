@@ -4,7 +4,7 @@ function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const a = document.createElement('a');
-        a.setAttribute('href', '#');
+        a.setAttribute('href', `photographer.html?id=${id}`);
         a.setAttribute('aria-label', `Accéder au profil de ${name}, photographe à ${city}`);
 
         const article = document.createElement('article');
