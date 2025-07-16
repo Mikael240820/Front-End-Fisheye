@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 @import url("photographer.css");
 
 body {
@@ -28,23 +34,48 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin: 100px 0;
 }
 
-.photographer_section article {
+.photographer_section .photographer {
     justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
 }
 
-.photographer_section article h2 {
+.photographer_section .photographer h2 {
     color: #D3573C;
     font-size: 36px;
 }
 
-.photographer_section article img {
+.photographer_section .photographer img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+
+.photographer_section .photographer_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.photographer_section .photographer_info address {
+    font-style: normal;
+}
+
+.photographer_section .photographer_info small {
+    color: #757575;
+}
+
+.photographer_section a {
+    text-decoration: none;
+    color: inherit;
 }
