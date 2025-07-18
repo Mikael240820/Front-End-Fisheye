@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-@import url("photographer.css");
-
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -23,6 +21,11 @@ header {
 h1 {
     color: #901C1C;
     margin-right: 100px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .logo {

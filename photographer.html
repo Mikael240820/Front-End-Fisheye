@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/photographer.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -16,6 +17,20 @@
     <main id="main">
       <div class="photograph_header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      </div>
+      <div class="photograph_body">
+        <div class="filter">
+          <span id="filter-label" class="filter_label">Trier par</span>
+          <div class="filter_container">
+            <button type="button" role="button" id="filter-trigger" class="filter_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter-label"><span>Popularité</span></button>
+            <ul id="filter-options" class="filter_options" role="listbox" aria-labelledby="filter-label" aria-activedescendant="option-popularity">
+              <li id="option-popularity" role="option" aria-selected="true" data-value="popularity">Popularité</li>
+              <li id="option-date" role="option" aria-selected="false" data-value="date">Date</li>
+              <li id="option-title" role="option" aria-selected="false" data-value="title">Titre</li>
+            </ul>
+          </div>
+        </div>
+        <div class="photograph_medias"></div>
       </div>
     </main>
     <div id="contact_modal">
@@ -36,7 +51,9 @@
     <script src="scripts/utils/requestService.js"></script>
     <script src="scripts/utils/dataService.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
+    <script src="scripts/factories/mediaFactory.js"></script>
     <script src="scripts/templates/photographer.js"></script>
+    <script src="scripts/templates/media.js"></script>
     <script src="scripts/pages/photographer.js"></script>
    </body>
 </html>

@@ -25,3 +25,8 @@ async function getPhotographer(id) {
     
     return photographer;
 }
+
+async function getPhotographerMedias(photographerId) {
+    const data = await getPhotographers();
+    return data.media.filter(m => m.photographerId === parseInt(photographerId));
+}
