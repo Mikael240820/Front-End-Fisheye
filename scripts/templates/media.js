@@ -41,7 +41,7 @@ function mediaTemplate(data) {
         likesCount.setAttribute('aria-label', `${likes} likes`);
 
         const icon = document.createElement('img');
-        icon.setAttribute('src', '/assets/icons/heart-red.svg');
+        icon.setAttribute('src', 'assets/icons/heart-red.svg');
         icon.setAttribute('alt', 'likes');
  
         const likeButton = document.createElement('button');

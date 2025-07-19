@@ -1,6 +1,6 @@
 function photographerTemplate(data) {
     const { id, name, portrait, city, country, tagline, price } = data;
-    const picture = `/assets/photographers/${portrait}`;
+    const picture = `assets/photographers/${portrait}`;
 
     /**
      * Génère le DOM pour la carte d'un photographe
@@ -20,7 +20,7 @@ function photographerTemplate(data) {
 
         const article = document.createElement('article');
         article.classList.add('photographer');
-        article.setAttribute('aria-labelledby', `photographer-name-${id}`);
+        article.setAttribute('aria-labelledby', `photographer_name_${id}`);
 
         const img = document.createElement('img');
         img.setAttribute('src', picture);
@@ -32,7 +32,7 @@ function photographerTemplate(data) {
 
         const title = document.createElement(titleTag);
         title.textContent = name;
-        title.setAttribute('id', `photographer-name-${id}`);
+        title.setAttribute('id', `photographer_name_${id}`);
         info.appendChild(title);
 
         const address = document.createElement('address');

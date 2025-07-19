@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
-      <a href="/index.html">
+      <a href="index.html">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
       </a>
     </header>
@@ -20,31 +20,52 @@
       </div>
       <div class="photograph_body">
         <div class="filter">
-          <span id="filter-label" class="filter_label">Trier par</span>
+          <span id="filter_label" class="filter_label">Trier par</span>
           <div class="filter_container">
-            <button type="button" role="button" id="filter-trigger" class="filter_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter-label"><span>Popularité</span></button>
-            <ul id="filter-options" class="filter_options" role="listbox" aria-labelledby="filter-label" aria-activedescendant="option-popularity">
-              <li id="option-popularity" role="option" aria-selected="true" data-value="popularity">Popularité</li>
-              <li id="option-date" role="option" aria-selected="false" data-value="date">Date</li>
-              <li id="option-title" role="option" aria-selected="false" data-value="title">Titre</li>
+            <button type="button" role="button" id="filter_trigger" class="filter_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter_label"><span>Popularité</span></button>
+            <ul id="filter_options" class="filter_options" role="listbox" aria-labelledby="filter_label" aria-activedescendant="option_popularity">
+              <li id="option_popularity" role="option" aria-selected="true" data-value="popularity">Popularité</li>
+              <li id="option_date" role="option" aria-selected="false" data-value="date">Date</li>
+              <li id="option_title" role="option" aria-selected="false" data-value="title">Titre</li>
             </ul>
           </div>
         </div>
         <div class="photograph_medias"></div>
       </div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" class="modal_container" role="dialog" aria-hidden="true" aria-describedby="modal_title">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modal_title">
+            Contactez-moi<br>
+            <span id="modal_photograph_name"></span>
+          </h2>
+          <button type="button" id="close_modal" onclick="closeModal()">
+            <img src="assets/icons/close.svg">
+          </button>
         </header>
-				<form>
+				<form id="contact_form" method="post" onsubmit="sendForm(event)">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="input_firstname">Prénom</label>
+            <input type="text" name="firstname" id="input_firstname" required aria-required="true">
+            <span class="invalid_feedback">Veuillez renseigner votre prénom</span>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+						<label for="input_lastname">Nom</label>
+            <input type="text" name="lastname" id="input_lastname" required aria-required="true">
+            <span class="invalid_feedback">Veuillez renseigner votre nom</span>
+					</div>
+          <div>
+						<label for="input_email">Email</label>
+            <input type="email" name="email" id="input_email" required aria-required="true">
+            <span class="invalid_feedback">Veuillez renseigner un mail valide</span>
+					</div>
+          <div>
+						<label for="input_message">Votre message</label>
+            <textarea name="message" id="input_message" rows="10" required aria-required="true"></textarea>
+            <span class="invalid_feedback">Veuillez renseigner votre message</span>
+					</div>
+          <button type="submit" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>

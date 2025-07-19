@@ -21,8 +21,8 @@ async function displayData(photographer, medias) {
 }
 
 function initListbox() {
-    const trigger = document.getElementById('filter-trigger');
-    const listbox = document.getElementById('filter-options');
+    const trigger = document.getElementById('filter_trigger');
+    const listbox = document.getElementById('filter_options');
     const options = listbox.querySelectorAll('li[role="option"]');
     
     // Ouvrir/fermer la listbox
@@ -68,6 +68,11 @@ function initListbox() {
     });
 }
 
+function displayInfos(photographer) {
+    const modalPhotographName = document.getElementById('modal_photograph_name');
+    modalPhotographName.innerText = photographer.name;
+}
+
 async function init() {
     const photographerId = getIdFromUrl();
     const photographer = await getPhotographer(photographerId);
@@ -75,6 +80,7 @@ async function init() {
     if (photographer) {
         const medias = await getPhotographerMedias(photographerId);
         displayData(photographer, medias);
+        displayInfos(photographer);
     } else {
         alert("La page n'existe pas !");
     }
