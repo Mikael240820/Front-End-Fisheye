@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <link href="css/listbox.css" rel="stylesheet" type="text/css">
+    <link href="css/lightbox.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/photographer.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
@@ -19,11 +21,11 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="photograph_body">
-        <div class="filter">
-          <span id="filter_label" class="filter_label">Trier par</span>
-          <div class="filter_container">
-            <button type="button" role="button" id="filter_trigger" class="filter_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="filter_label"><span>Popularité</span></button>
-            <ul id="filter_options" class="filter_options" role="listbox" aria-labelledby="filter_label" aria-activedescendant="option_popularity">
+        <div class="listbox">
+          <span id="listbox_label" class="listbox_label">Trier par</span>
+          <div class="listbox_container">
+            <button type="button" role="button" id="listbox_trigger" class="listbox_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="listbox_label"><span>Popularité</span></button>
+            <ul id="listbox_options" class="listbox_options" role="listbox" aria-labelledby="listbox_label" aria-activedescendant="option_popularity">
               <li id="option_popularity" role="option" aria-selected="true" data-value="popularity">Popularité</li>
               <li id="option_date" role="option" aria-selected="false" data-value="date">Date</li>
               <li id="option_title" role="option" aria-selected="false" data-value="title">Titre</li>
@@ -33,6 +35,25 @@
         <div class="photograph_medias"></div>
       </div>
     </main>
+    <div id="media_lightbox" class="modal_container lightbox" role="dialog" aria-hidden="true" aria-describedby="lightbox_title">
+			<div class="modal">
+				<header>
+          <h2 id="lightbox_title">Image</h2>
+          <button type="button" class="close_lightbox" onclick="closeLightbox()" aria-label="Fermer la fenêtre">
+            <img src="assets/icons/close-red.svg" alt="">
+          </button>
+        </header>
+				<div id="lightbox_container" class="lightbox_container" tabindex="0">
+          <button type="button" class="lightbox_nav lightbox_prev" onclick="previousMedia()" aria-label="Image précédente">
+            <img src="assets/icons/arrow-left.svg" alt="">
+          </button>
+          <div id="lightbox_content"></div>
+          <button type="button" class="lightbox_nav lightbox_next" onclick="nextMedia()" aria-label="Image suivante">
+            <img src="assets/icons/arrow-right.svg" alt="">
+          </button>
+        </div>
+			</div>
+		</div>
     <div id="contact_modal" class="modal_container" role="dialog" aria-hidden="true" aria-describedby="modal_title">
 			<div class="modal">
 				<header>
@@ -40,8 +61,8 @@
             Contactez-moi<br>
             <span id="modal_photograph_name"></span>
           </h2>
-          <button type="button" id="close_modal" onclick="closeModal()">
-            <img src="assets/icons/close.svg">
+          <button type="button" id="close_modal" onclick="closeModal()" aria-label="Fermer la fenêtre">
+            <img src="assets/icons/close.svg" alt="">
           </button>
         </header>
 				<form id="contact_form" method="post" onsubmit="sendForm(event)">
@@ -71,8 +92,11 @@
 		</div>
     <script src="scripts/utils/requestService.js"></script>
     <script src="scripts/utils/dataService.js"></script>
-    <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/factories/mediaFactory.js"></script>
+    <script src="scripts/ui/listbox.js"></script>
+    <script src="scripts/ui/modal.js"></script>
+    <script src="scripts/ui/contact.js"></script>
+    <script src="scripts/ui/lightbox.js"></script>
     <script src="scripts/templates/photographer.js"></script>
     <script src="scripts/templates/media.js"></script>
     <script src="scripts/pages/photographer.js"></script>

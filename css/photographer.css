@@ -63,97 +63,6 @@
     border-radius: 5px;
 }
 
-.filter {
-    display: flex;
-    align-items: baseline;
-    gap: 30px;
-}
-
-.filter_label {
-    color: black;
-    font-weight: bold;
-}
-
-.filter_container {
-    position: relative;
-    width: 170px;
-}
-
-.filter_trigger,
-.filter_options li {
-    width: 100%;
-    height: 55px;
-    background-color: #901C1C;
-    color: white;
-    padding: 10px 13px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.filter_trigger {
-    height: 70px;
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    appearance: none;
-    border: none;
-    border-radius: 5px;
-}
-
-.filter_trigger span {
-   transform: translateY(2px);
-}
-
-/* Flèche personnalisée */
-.filter_trigger::after {
-    content: "";
-    width: 15px;
-    height: 15px;
-    background: url("../assets/icons/arrow-down.svg") no-repeat center/contain;
-}
-.filter_trigger[aria-expanded="true"]::after {
-    transform: rotate(180deg);
-}
-
-.filter_trigger:focus {
-    border-radius: 5px 5px 0 0;
-}
-
-.filter_options {
-    display: none;
-    position: absolute;
-    width: 100%;
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
-}
-
-.filter_options li {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.filter_options li::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 7px;
-    right: 7px;
-    display: block;
-    height: 1px;
-    background-color: white;
-}
-
-.filter_options li:last-of-type {
-    border-radius: 0 0 5px 5px;
-}
-
-.filter_options li[aria-selected="true"] {
-    display: none;
-}
-
 .photograph_body .photographer_info {
     display: flex;
     justify-content: space-between;
@@ -214,14 +123,16 @@
     opacity: 0;
     visibility: hidden;
     overflow-y: auto;
-    transform: translateY(35px);
-    transition: transform .3s, opacity .1s;
+    transition: transform .3s, opacity .3s;
 }
 
-body.modal_open .modal_container {
+body.modal_open .modal_container[aria-hidden="false"] {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+}
+
+.modal_container[aria-hidden="false"] {
+    background-color: rgba(229, 228, 227, 0.8);
 }
 
 /* Empêcher le scroll du body quand la modal est ouverte */
@@ -265,58 +176,4 @@ body.modal_open {
 .modal header h2 {
     font-size: 50px;
     font-weight: normal;
-}
-
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 30px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 20px;
-}
-
-form textarea,
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-    padding: 20px;
-    font-size: 20px;
-}
-
-form textarea {
-    height: auto;
-}
-
-form textarea + .invalid_feedback,
-form input + .invalid_feedback {
-    display: none;
-    color: white;
-    background-color: red;
-    font-weight: bold;
-    padding: 0 5px;
-}
-
-form textarea.is_invalid ,
-form input.is_invalid {
-    border: 2px solid red;
-    border-bottom-left-radius: 0;
-}
-
-form textarea.is_invalid + .invalid_feedback,
-form input.is_invalid + .invalid_feedback {
-    display: inline;
 }

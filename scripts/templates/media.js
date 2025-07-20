@@ -14,6 +14,12 @@ function mediaTemplate(data) {
             a.setAttribute('aria-label', `Voir la vidéo ${title} en grand`);
         }
         
+        // Ajouter un listener pour ouvrir la lightbox
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            openMediaLightbox(id);
+        });
+        
         // Utilisation du Factory Method
         try {
             const mediaElement = createMediaElement(data);

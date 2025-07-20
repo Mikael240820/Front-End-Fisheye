@@ -1,0 +1,90 @@
+.listbox {
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+}
+
+.listbox_label {
+    color: black;
+    font-weight: bold;
+}
+
+.listbox_container {
+    position: relative;
+    width: 170px;
+}
+
+.listbox_trigger,
+.listbox_options li {
+    width: 100%;
+    height: 55px;
+    background-color: #901C1C;
+    color: white;
+    padding: 10px 13px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.listbox_trigger {
+    height: 70px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.listbox_trigger span {
+   transform: translateY(2px);
+}
+
+/* Flèche personnalisée */
+.listbox_trigger::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: url("../assets/icons/arrow-down.svg") no-repeat center/contain;
+}
+.listbox_trigger[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+.listbox_trigger:focus {
+    border-radius: 5px 5px 0 0;
+}
+
+.listbox_options {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+}
+
+.listbox_options li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.listbox_options li::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 7px;
+    right: 7px;
+    display: block;
+    height: 1px;
+    background-color: white;
+}
+
+.listbox_options li:last-of-type {
+    border-radius: 0 0 5px 5px;
+}
+
+.listbox_options li[aria-selected="true"] {
+    display: none;
+}
