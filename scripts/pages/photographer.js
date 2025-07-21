@@ -1,4 +1,3 @@
-// Variable globale pour stocker tous les médias du photographe
 let photographerMedias = [];
 
 async function displayPhotographer(photographer) {
@@ -18,26 +17,36 @@ async function displayPhotographerMedias(medias) {
     });
 }
 
+function displayModalPhotographName(photographer) {
+    const modalPhotographName = document.getElementById('modal_photograph_name');
+    modalPhotographName.innerText = photographer.name;
+}
+
+function displayLikesPriceInfos(photographer, medias) {
+    const photographPrice = document.getElementById('photograph_price');
+    const photographLikes = document.getElementById('photograph_likes');
+    
+    photographPrice.innerText = `${photographer.price}€ / jour`;
+
+    let nbLikes = 0;
+    medias.forEach((media) => nbLikes += media.likes);
+    photographLikes.innerHTML = `${nbLikes} <img src="assets/icons/heart.svg" alt="">`;
+}
+
 async function displayData(photographer, medias) {
     // Stocker les médias globalement pour la lightbox
     photographerMedias = medias;
     
     await displayPhotographer(photographer);
     await displayPhotographerMedias(medias);
+
+    displayModalPhotographName(photographer);
+    displayLikesPriceInfos(photographer, medias);
 }
 
-function displayInfos(photographer) {
-    const modalPhotographName = document.getElementById('modal_photograph_name');
-    modalPhotographName.innerText = photographer.name;
-}
-
-// Fonction pour ouvrir la lightbox avec le média sélectionné
 function openMediaLightbox(mediaId) {
-    // Trouver l'index du média dans la liste
     const mediaIndex = photographerMedias.findIndex(media => media.id === mediaId);
-    
     if (mediaIndex !== -1) {
-        // Ouvrir la lightbox avec tous les médias et commencer par celui sélectionné
         displayLightbox(photographerMedias, mediaIndex);
     }
 }
@@ -49,7 +58,6 @@ async function init() {
     if (photographer) {
         const medias = await getPhotographerMedias(photographerId);
         displayData(photographer, medias);
-        displayInfos(photographer);
     } else {
         alert("La page n'existe pas !");
     }

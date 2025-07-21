@@ -36,7 +36,7 @@ function mediaTemplate(data) {
         
         const description = document.createElement('p');
         description.textContent = title;
-        description.setAttribute('id', `media-title-${id}`);
+        description.setAttribute('id', `media_title_${id}`);
         figcaption.appendChild(description);
         
         const likesContainer = document.createElement('div');
@@ -45,14 +45,23 @@ function mediaTemplate(data) {
         const likesCount = document.createElement('span');
         likesCount.textContent = likes;
         likesCount.setAttribute('aria-label', `${likes} likes`);
+        likesCount.setAttribute('data-media-id', id);
 
         const icon = document.createElement('img');
-        icon.setAttribute('src', 'assets/icons/heart-red.svg');
+        icon.setAttribute('src', 'assets/icons/heart.svg');
         icon.setAttribute('alt', 'likes');
  
         const likeButton = document.createElement('button');
         likeButton.setAttribute('type', 'button');
+        likeButton.setAttribute('aria-label', `Aimer le média ${title}`);
+        likeButton.setAttribute('aria-pressed', 'false');
+        likeButton.setAttribute('data-media-id', id);
         likeButton.appendChild(icon);
+        
+        // Gestionnaire d'événement pour le like
+        likeButton.addEventListener('click', () => {
+            toggleLike(likeButton, likesCount, title);
+        });
         
         likesContainer.appendChild(likesCount);
         likesContainer.appendChild(likeButton);
