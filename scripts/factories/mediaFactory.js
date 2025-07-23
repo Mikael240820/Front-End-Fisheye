@@ -44,8 +44,12 @@ function createImageElement(photographerId, imageName, title, options = {}) {
  */
 function createVideoElement(photographerId, videoName, title, options = {}) {
     const video = document.createElement('video');
-    video.setAttribute('controls', '');
     video.setAttribute('aria-label', `Voir la vidéo ${title}`);
+
+    // Options de contrôle de la vidéo
+    if (options.hasControls) {
+        video.setAttribute('controls', '');
+    }
     
     // Options spéciales pour la lightbox
     if (options.isLightbox) {

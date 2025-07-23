@@ -22,14 +22,16 @@
       </div>
       <div class="photograph_body">
         <div class="listbox">
-          <span id="listbox_label" class="listbox_label">Trier par</span>
+          <label for="listbox_trigger" id="listbox_label" class="listbox_label">Trier par</label>
           <div class="listbox_container">
-            <button type="button" role="button" id="listbox_trigger" class="listbox_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="listbox_label"><span>Popularité</span></button>
-            <ul id="listbox_options" class="listbox_options" role="listbox" aria-labelledby="listbox_label" aria-activedescendant="option_popularity">
-              <li id="option_popularity" role="option" aria-selected="true" data-value="popularity">Popularité</li>
-              <li id="option_date" role="option" aria-selected="false" data-value="date">Date</li>
-              <li id="option_title" role="option" aria-selected="false" data-value="title">Titre</li>
-            </ul>
+            <button type="button" id="listbox_trigger" class="listbox_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="listbox_label">
+              <span>Popularité</span>
+            </button>
+            <div id="listbox_options" class="listbox_options" role="listbox" aria-activedescendant="option_popularity">
+              <a href="#by_popularity" role="option" id="option_popularity" aria-selected="true" data-value="popularity">Popularité</a>
+              <a href="#by_date" role="option" id="option_date" aria-selected="false" data-value="date">Date</a>
+              <a href="#by_title" role="option" id="option_title" aria-selected="false" data-value="title">Titre</a>
+            </div>
           </div>
         </div>
         <div class="photograph_medias"></div>

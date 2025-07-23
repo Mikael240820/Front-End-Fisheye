@@ -1,4 +1,5 @@
 let photographerMedias = [];
+let currentPhotographer = null;
 
 async function displayPhotographer(photographer) {
     const photographerHeader = document.querySelector('.photograph_header');
@@ -9,12 +10,33 @@ async function displayPhotographer(photographer) {
 
 async function displayPhotographerMedias(medias) {
     const photographMedias = document.querySelector('.photograph_medias');
+    photographMedias.innerHTML = '';
 
     medias.forEach((media) => {
         const mediaModel = mediaTemplate(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         photographMedias.appendChild(mediaCardDOM);
     });
+}
+
+function sortMedias(medias, sortType) {
+    const sortedMedias = [...medias]; // Créer une copie pour ne pas modifier l'original
+    
+    switch (sortType) {
+        case 'popularity':
+            return sortedMedias.sort((a, b) => b.likes - a.likes);
+        case 'date':
+            return sortedMedias.sort((a, b) => new Date(b.date) - new Date(a.date));
+        case 'title':
+            return sortedMedias.sort((a, b) => a.title.localeCompare(b.title));
+        default:
+            return sortedMedias;
+    }
+}
+
+function displaySortedMedias(sortType) {
+    const sortedMedias = sortMedias(photographerMedias, sortType);
+    displayPhotographerMedias(sortedMedias);
 }
 
 function displayModalPhotographName(photographer) {
@@ -34,11 +56,13 @@ function displayLikesPriceInfos(photographer, medias) {
 }
 
 async function displayData(photographer, medias) {
-    // Stocker les médias globalement pour la lightbox
     photographerMedias = medias;
+    currentPhotographer = photographer;
     
     await displayPhotographer(photographer);
-    await displayPhotographerMedias(medias);
+    
+    const sortedMedias = sortMedias(medias, 'popularity');
+    await displayPhotographerMedias(sortedMedias);
 
     displayModalPhotographName(photographer);
     displayLikesPriceInfos(photographer, medias);

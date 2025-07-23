@@ -123,7 +123,7 @@ function showCurrentMedia() {
     
     // Utiliser la Factory pour créer l'élément média
     try {
-        const mediaElement = createMediaElement(media, { isLightbox: true });
+        const mediaElement = createMediaElement(media, { isLightbox: true, hasControls: true });
         lightboxMedia.appendChild(mediaElement);
     } catch (error) {
         console.error('Erreur lors de la création du média dans la lightbox');
