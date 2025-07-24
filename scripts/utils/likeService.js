@@ -2,9 +2,9 @@ function toggleLike(button, likesCountElement, mediaTitle) {
     const mediaId = parseInt(button.getAttribute('data-media-id'));
     const icon = button.querySelector('img');
     const isLiked = button.getAttribute('aria-pressed') === 'true';
-    
+
     let currentLikes = parseInt(likesCountElement.textContent);
-    
+
     if (isLiked) {
         // Retirer le like
         currentLikes--;
@@ -18,17 +18,17 @@ function toggleLike(button, likesCountElement, mediaTitle) {
         button.setAttribute('aria-pressed', 'true');
         button.setAttribute('aria-label', `Ne plus aimer ${mediaTitle}`);
     }
-    
+
     // Mettre à jour l'affichage local
     likesCountElement.textContent = currentLikes;
     likesCountElement.setAttribute('aria-label', `${currentLikes} likes`);
-    
+
     // Mettre à jour le compteur global
     const mediaIndex = photographerMedias.findIndex(media => media.id === mediaId);
     if (mediaIndex !== -1) {
         photographerMedias[mediaIndex].likes = currentLikes;
     }
-    
+
     // Mettre à jour le compteur total
     updateTotalLikes();
 }

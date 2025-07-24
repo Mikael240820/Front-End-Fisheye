@@ -21,7 +21,7 @@ async function displayPhotographerMedias(medias) {
 
 function sortMedias(medias, sortType) {
     const sortedMedias = [...medias]; // Créer une copie pour ne pas modifier l'original
-    
+
     switch (sortType) {
         case 'popularity':
             return sortedMedias.sort((a, b) => b.likes - a.likes);
@@ -47,7 +47,7 @@ function displayModalPhotographName(photographer) {
 function displayLikesPriceInfos(photographer, medias) {
     const photographPrice = document.getElementById('photograph_price');
     const photographLikes = document.getElementById('photograph_likes');
-    
+
     photographPrice.innerText = `${photographer.price}€ / jour`;
 
     let nbLikes = 0;
@@ -58,9 +58,9 @@ function displayLikesPriceInfos(photographer, medias) {
 async function displayData(photographer, medias) {
     photographerMedias = medias;
     currentPhotographer = photographer;
-    
+
     await displayPhotographer(photographer);
-    
+
     const sortedMedias = sortMedias(medias, 'popularity');
     await displayPhotographerMedias(sortedMedias);
 
@@ -78,12 +78,12 @@ function openMediaLightbox(mediaId) {
 async function init() {
     const photographerId = getIdFromUrl();
     const photographer = await getPhotographer(photographerId);
-    
+
     if (photographer) {
         const medias = await getPhotographerMedias(photographerId);
         displayData(photographer, medias);
     } else {
-        alert("La page n'existe pas !");
+        alert('La page n\'existe pas !');
     }
 }
 

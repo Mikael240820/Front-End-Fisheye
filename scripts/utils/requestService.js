@@ -3,7 +3,7 @@ function getIdFromUrl() {
     const id = urlParams.get('id');
 
     if (!id) {
-        console.error("Aucun identifiant n'a été trouvé dans l'URL");
+        console.error('Aucun identifiant n\'a été trouvé dans l\'URL');
         return;
     }
 

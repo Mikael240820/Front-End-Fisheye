@@ -4,7 +4,7 @@ function photographerTemplate(data) {
 
     /**
      * Génère le DOM pour la carte d'un photographe
-     * 
+     *
      * @param {Object} options - Options de configuration
      * @param {string} [options.titleTag='h1'] - Balise HTML pour le nom du photographe
      * @param {boolean} [options.withLink=true] - Si true, entoure la carte d'un lien vers le profil
@@ -58,9 +58,9 @@ function photographerTemplate(data) {
             a.appendChild(article);
             return a;
         }
-        
+
         return article;
     }
 
-    return { name, picture, getUserCardDOM }
+    return { name, picture, getUserCardDOM };
 }

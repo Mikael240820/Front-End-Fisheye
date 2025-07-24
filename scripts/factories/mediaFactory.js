@@ -1,6 +1,6 @@
 /**
  * Factory Method pour créer un élément média
- * 
+ *
  * @param {Object} mediaData - Les données du média
  * @param {number} mediaData.photographerId - ID du photographe
  * @param {string} mediaData.title - Titre du média
@@ -12,7 +12,7 @@
  */
 function createMediaElement(mediaData, options = {}) {
     const { photographerId, title, image, video } = mediaData;
-    
+
     if (image) {
         return createImageElement(photographerId, image, title, options);
     } else if (video) {
@@ -30,7 +30,7 @@ function createImageElement(photographerId, imageName, title, options = {}) {
     img.setAttribute('src', `assets/medias/${photographerId}/${imageName}`);
     img.setAttribute('alt', title);
     img.setAttribute('role', 'img');
-    
+
     // Options spéciales pour la lightbox
     if (options.isLightbox) {
         img.setAttribute('loading', 'lazy');
@@ -50,16 +50,16 @@ function createVideoElement(photographerId, videoName, title, options = {}) {
     if (options.hasControls) {
         video.setAttribute('controls', '');
     }
-    
+
     // Options spéciales pour la lightbox
     if (options.isLightbox) {
         video.setAttribute('autoplay', '');
     }
-    
+
     const source = document.createElement('source');
     source.setAttribute('src', `assets/medias/${photographerId}/${videoName}`);
     source.setAttribute('type', 'video/mp4');
     video.appendChild(source);
-    
+
     return video;
 }
