@@ -10,92 +10,94 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe</title>
   </head>
-  <body>
-    <header>
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
-      </a>
-    </header>
-    <main id="main">
-      <div class="photograph_header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-      <div class="photograph_body">
-        <div class="listbox">
-          <label for="listbox_trigger" id="listbox_label" class="listbox_label">Trier par</label>
-          <div class="listbox_container">
-            <button type="button" id="listbox_trigger" class="listbox_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="listbox_label">
-              <span>Popularité</span>
-            </button>
-            <div id="listbox_options" class="listbox_options" role="listbox" aria-activedescendant="option_popularity">
-              <a href="#by_popularity" role="option" id="option_popularity" aria-selected="true" data-value="popularity">Popularité</a>
-              <a href="#by_date" role="option" id="option_date" aria-selected="false" data-value="date">Date</a>
-              <a href="#by_title" role="option" id="option_title" aria-selected="false" data-value="title">Titre</a>
+  <body class="photographer">
+    <div class="container">
+      <header>
+        <a href="index.html">
+          <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
+        </a>
+      </header>
+      <main id="main">
+        <div class="photograph_header">
+          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        </div>
+        <div class="photograph_body">
+          <div class="listbox">
+            <label for="listbox_trigger" id="listbox_label" class="listbox_label">Trier par</label>
+            <div class="listbox_container">
+              <button type="button" id="listbox_trigger" class="listbox_trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="listbox_label">
+                <span>Popularité</span>
+              </button>
+              <div id="listbox_options" class="listbox_options" role="listbox" aria-activedescendant="option_popularity">
+                <a href="#by_popularity" role="option" id="option_popularity" aria-selected="true" data-value="popularity">Popularité</a>
+                <a href="#by_date" role="option" id="option_date" aria-selected="false" data-value="date">Date</a>
+                <a href="#by_title" role="option" id="option_title" aria-selected="false" data-value="title">Titre</a>
+              </div>
             </div>
           </div>
+          <div class="photograph_medias"></div>
+          <div class="photograph_infos">
+            <span id="photograph_likes"></span>
+            <span id="photograph_price"></span>
+          </div>
         </div>
-        <div class="photograph_medias"></div>
-        <div class="photograph_infos">
-          <span id="photograph_likes"></span>
-          <span id="photograph_price"></span>
+      </main>
+      <div id="media_lightbox" class="modal_container lightbox" role="dialog" aria-hidden="true" aria-describedby="lightbox_title">
+        <div class="modal">
+          <header>
+            <h2 id="lightbox_title">Image</h2>
+            <button type="button" class="close_lightbox" onclick="closeLightbox()" aria-label="Fermer la fenêtre">
+              <img src="assets/icons/close-red.svg" alt="">
+            </button>
+          </header>
+          <div id="lightbox_container" class="lightbox_container" tabindex="0">
+            <button type="button" class="lightbox_nav lightbox_prev" onclick="previousMedia()" aria-label="Image précédente">
+              <img src="assets/icons/arrow-left.svg" alt="">
+            </button>
+            <div id="lightbox_content"></div>
+            <button type="button" class="lightbox_nav lightbox_next" onclick="nextMedia()" aria-label="Image suivante">
+              <img src="assets/icons/arrow-right.svg" alt="">
+            </button>
+          </div>
         </div>
       </div>
-    </main>
-    <div id="media_lightbox" class="modal_container lightbox" role="dialog" aria-hidden="true" aria-describedby="lightbox_title">
-			<div class="modal">
-				<header>
-          <h2 id="lightbox_title">Image</h2>
-          <button type="button" class="close_lightbox" onclick="closeLightbox()" aria-label="Fermer la fenêtre">
-            <img src="assets/icons/close-red.svg" alt="">
-          </button>
-        </header>
-				<div id="lightbox_container" class="lightbox_container" tabindex="0">
-          <button type="button" class="lightbox_nav lightbox_prev" onclick="previousMedia()" aria-label="Image précédente">
-            <img src="assets/icons/arrow-left.svg" alt="">
-          </button>
-          <div id="lightbox_content"></div>
-          <button type="button" class="lightbox_nav lightbox_next" onclick="nextMedia()" aria-label="Image suivante">
-            <img src="assets/icons/arrow-right.svg" alt="">
-          </button>
+      <div id="contact_modal" class="modal_container" role="dialog" aria-hidden="true" aria-describedby="modal_title">
+        <div class="modal">
+          <header>
+            <h2 id="modal_title">
+              Contactez-moi<br>
+              <span id="modal_photograph_name"></span>
+            </h2>
+            <button type="button" id="close_modal" onclick="closeModal()" aria-label="Fermer la fenêtre">
+              <img src="assets/icons/close.svg" alt="">
+            </button>
+          </header>
+          <form id="contact_form" method="post" onsubmit="sendForm(event)">
+            <div>
+              <label for="input_firstname">Prénom</label>
+              <input type="text" name="firstname" id="input_firstname" required aria-required="true">
+              <span class="invalid_feedback">Veuillez renseigner votre prénom</span>
+            </div>
+            <div>
+              <label for="input_lastname">Nom</label>
+              <input type="text" name="lastname" id="input_lastname" required aria-required="true">
+              <span class="invalid_feedback">Veuillez renseigner votre nom</span>
+            </div>
+            <div>
+              <label for="input_email">Email</label>
+              <input type="email" name="email" id="input_email" required aria-required="true">
+              <span class="invalid_feedback">Veuillez renseigner un mail valide</span>
+            </div>
+            <div>
+              <label for="input_message">Votre message</label>
+              <textarea name="message" id="input_message" rows="10" required aria-required="true"></textarea>
+              <span class="invalid_feedback">Veuillez renseigner votre message</span>
+            </div>
+            <button type="submit" class="contact_button">Envoyer</button>
+          </form>
         </div>
-			</div>
-		</div>
-    <div id="contact_modal" class="modal_container" role="dialog" aria-hidden="true" aria-describedby="modal_title">
-			<div class="modal">
-				<header>
-          <h2 id="modal_title">
-            Contactez-moi<br>
-            <span id="modal_photograph_name"></span>
-          </h2>
-          <button type="button" id="close_modal" onclick="closeModal()" aria-label="Fermer la fenêtre">
-            <img src="assets/icons/close.svg" alt="">
-          </button>
-        </header>
-				<form id="contact_form" method="post" onsubmit="sendForm(event)">
-					<div>
-						<label for="input_firstname">Prénom</label>
-            <input type="text" name="firstname" id="input_firstname" required aria-required="true">
-            <span class="invalid_feedback">Veuillez renseigner votre prénom</span>
-					</div>
-          <div>
-						<label for="input_lastname">Nom</label>
-            <input type="text" name="lastname" id="input_lastname" required aria-required="true">
-            <span class="invalid_feedback">Veuillez renseigner votre nom</span>
-					</div>
-          <div>
-						<label for="input_email">Email</label>
-            <input type="email" name="email" id="input_email" required aria-required="true">
-            <span class="invalid_feedback">Veuillez renseigner un mail valide</span>
-					</div>
-          <div>
-						<label for="input_message">Votre message</label>
-            <textarea name="message" id="input_message" rows="10" required aria-required="true"></textarea>
-            <span class="invalid_feedback">Veuillez renseigner votre message</span>
-					</div>
-          <button type="submit" class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+      </div>
+    </div>
     <script src="scripts/utils/requestService.js"></script>
     <script src="scripts/utils/dataService.js"></script>
     <script src="scripts/utils/likeService.js"></script>
